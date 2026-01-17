@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://happymalefeet.com/sitemap.xml
+
+# Adult content rating
+Rating: adult
