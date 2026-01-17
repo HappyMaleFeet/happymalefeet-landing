@@ -397,6 +397,33 @@
             }
         }
     </style>
+    <!-- Geo-blocking for Philippines -->
+<script>
+// Detect user's country
+fetch('https://ipapi.co/json/')
+    .then(response => response.json())
+    .then(data => {
+        if (data.country_code === 'PH') {
+            // Philippines detected - redirect or block
+            document.body.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #667eea; color: white; font-family: sans-serif; text-align: center; padding: 20px;">
+                    <div>
+                        <h1>Access Restricted</h1>
+                        <p>This content is not available in your region.</p>
+                    </div>
+                </div>
+            `;
+            
+            // Track in Analytics
+            gtag('event', 'geo_blocked', {'event_category': 'Security', 'event_label': 'Philippines'});
+        }
+    })
+    .catch(error => {
+        // If geo-detection fails, allow access
+        console.log('Geo-detection unavailable');
+    });
+</script>
+```
 </head>
 <body>
     <!-- Age Verification Gate -->
